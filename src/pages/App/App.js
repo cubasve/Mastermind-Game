@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import GameBoard from './components/GameBoard/GameBoard';
-import ColorPicker from './components/ColorPicker/ColorPicker';
-import GameTimer from './components/GameTimer/GameTimer';
-import NewGameButton from './components/NewGameButton/NewGameButton';
+import GamePage from '../GamePage/GamePage';
+import SettingsPage from '../SettingsPage/SettingsPage';
+
+import { Route, Switch } from 'react-router-dom';
 
 const colors = ['#7CCCE5', '#FDE47F', '#E04644', '#B576AD'];
 
@@ -11,9 +11,13 @@ export default class App extends Component {
   constructor() {
     super();
     //super must be called before accessing this
-    this.state = {
+    this.state = this.getInitialState();
+  }
+
+  getInitialState = () => {
+    return {
       selectedColorIndex: 0,
-      guesses: [this.getNewGuess(), this.getNewGuess(), this.getNewGuess(), this.getNewGuess()],
+      guesses: [this.getNewGuess()],
       code: this.generateCode(),
     }
   }
@@ -50,27 +54,22 @@ export default class App extends Component {
       <div className='App'>
         <header className='App-header-footer'>React Mastermind</header>
 
-        <div className='flex-h align-flex-end'>
-          <GameBoard 
-            colors={colors}
-            guesses={this.state.guesses}
-          />
-
-          <div className='App-controls'>
-            <ColorPicker 
+        <Switch>
+          <Route exact path='/' render={() => (
+            <GamePage 
+              winTries={winTries}
               colors={colors}
               selectedColorIndex={this.state.selectedColorIndex}
+              guesses={this.state.guesses}
               handleColorSelection={this.handleColorSelection}
             />
-            <GameTimer />
-            <NewGameButton />
-          </div>
-          
-        </div>
+          )} />
 
-        <footer className='App-header-footer'>
-          {(winTries ? `You won in ${winTries} guesses!` : 'Good Luck!')}
-        </footer>
+          <Route exact path='/settings' render={props => (
+            <SettingsPage {...props} />
+          )} />
+
+        </Switch>
       </div>
     )
   }
