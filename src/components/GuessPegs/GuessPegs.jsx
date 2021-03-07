@@ -1,12 +1,13 @@
 import React from 'react';
 import GuessPeg from '../GuessPeg/GuessPeg';
 
-export default function GuessPegs(props) {
-    <div className="component">
-        GuessPegs
-        <GuessPeg />
-        <GuessPeg />
-        <GuessPeg />
-        <GuessPeg />
-    </div>
+export default function GuessPegs({ colors, code }) {
+    return (
+        <div>
+            <GuessPeg color={colors[code[0]]}/>
+            <GuessPeg color={colors[code[1]]}/>
+            <GuessPeg color={colors[code[2]]}/>
+            <GuessPeg color={colors[code[3]]}/>
+        </div>
+    )
 }
