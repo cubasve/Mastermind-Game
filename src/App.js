@@ -13,7 +13,7 @@ export default class App extends Component {
     //super must be called before accessing this
     this.state = {
       selectedColorIndex: 0,
-      guesses: [this.getNewGuess()],
+      guesses: [this.getNewGuess(), this.getNewGuess()],
       code: this.generateCode(),
     }
   }
@@ -33,15 +33,17 @@ export default class App extends Component {
     return new Array(4).fill().map(dummy => Math.floor(Math.random() * 4));
   }
 
+  getWinTries = () => {
+    //if there's a winner, return num guesses
+    //if there's no winner, return 0
+    let lastGuess = this.state.guesses.length - 1;
+    return this.state.guesses[lastGuess].score.perfect === 4 ? lastGuess + 1 : 0;
+  }
+
   render() {
+    let winTries = this.getWinTries();
     return (
       <div className="App">
-        <button onClick={() => this.setState(state => {
-          return {
-            selectedColorIndex: ++state.selectedColorIndex % 4
-          }
-        })}>Next Color</button>
-        Selected Color: {colors[this.state.selectedColorIndex]}
         <header className="App-header">React Mastermind</header>
 
         <div className="flex-h">
@@ -58,7 +60,7 @@ export default class App extends Component {
             <NewGameButton />
           </div>
         </div>
-        <footer>footer</footer>
+        <footer>{(winTries ? `You won in ${winTries} guesses!` : 'Good Luck!')}</footer>
       </div>
     )
   }

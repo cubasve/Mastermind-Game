@@ -3,7 +3,8 @@ import GuessRow from '../GuessRow/GuessRow';
 
 export default function GameBoard({ colors, guesses }) {
     return (
-        <div className="component">
+        <div>
+            GAME BOARD
             {guesses.map((guess, index) => {
                 <GuessRow 
                     guess={guess}
