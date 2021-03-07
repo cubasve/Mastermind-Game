@@ -5,13 +5,17 @@ import SettingsPage from '../SettingsPage/SettingsPage';
 
 import { Route, Switch } from 'react-router-dom';
 
-const colors = ['#7CCCE5', '#FDE47F', '#E04644', '#B576AD'];
+const colors = {
+  Easy: ['#7CCCE5', '#FDE47F', '#E04644', '#B576AD'],
+  Moderate: ['#7CCCE5', '#FDE47F', '#E04644', '#B576AD', '#B7D968'],
+  Difficult: ['#7CCCE5', '#FDE47F', '#E04644', '#B576AD', '#B7D968', '#555E7B'],
+};
 
 export default class App extends Component {
   constructor() {
     super();
     //super must be called before accessing this
-    this.state = this.getInitialState();
+    this.state = {...this.getInitialState(), difficulty: 'Easy'};
   }
 
   getInitialState = () => {
@@ -33,7 +37,9 @@ export default class App extends Component {
   }
 
   generateCode = () => {
-    return new Array(4).fill().map(dummy => Math.floor(Math.random() * 4));
+    let numberOfColors = this.state && colors[this.state.difficulty].length;
+    numberOfColors = numberOfColors || 4;
+    return new Array(4).fill().map(dummy => Math.floor(Math.random() * numberOfColors));
   }
 
   getWinTries = () => {
@@ -41,6 +47,11 @@ export default class App extends Component {
     //if there's no winner, return 0
     let lastGuess = this.state.guesses.length - 1;
     return this.state.guesses[lastGuess].score.perfect === 4 ? lastGuess + 1 : 0;
+  }
+
+  handleDifficultyChange = (level) => {
+    //use callback to ensure level is updated BEFORE calling handleNewGameClick
+    this.setState({ difficulty: level }, () => this.handleNewGameClick());
   }
 
   handleColorSelection = (colorIndex) => {
@@ -138,7 +149,7 @@ export default class App extends Component {
           <Route exact path='/' render={() => (
             <GamePage 
               winTries={winTries}
-              colors={colors}
+              colors={colors[this.state.difficulty]}
               selectedColorIndex={this.state.selectedColorIndex}
               guesses={this.state.guesses}
               handleColorSelection={this.handleColorSelection}
@@ -149,7 +160,12 @@ export default class App extends Component {
           )} />
 
           <Route exact path='/settings' render={props => (
-            <SettingsPage {...props} />
+            <SettingsPage 
+              {...props} 
+              colorsLookup={colors}
+              difficulty={this.state.difficulty}
+              handleDifficultyChange={this.handleDifficultyChange}
+            />
           )} />
 
         </Switch>

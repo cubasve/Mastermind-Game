@@ -16,7 +16,7 @@ export default function GamePage({
     selectedColorIndex, 
     winTries }) {
     return (
-        <div className='App'>
+        <div className='GamePage'>
 
             <div className='flex-h align-flex-end'>
                 <GameBoard 
@@ -27,7 +27,7 @@ export default function GamePage({
                 />
             </div>
 
-            <div className='App-controls'>
+            <div className='GamePage-controls'>
                 <ColorPicker 
                     colors={colors}
                     handleColorSelection={handleColorSelection}
@@ -35,7 +35,7 @@ export default function GamePage({
                 />
                 <GameTimer />
 
-                <Link className='btn btn-default GamePage-link' to='/settings'>
+                <Link className='btn btn-default GamePage-link-margin' to='/settings'>
                     Difficulty
                 </Link>
 
@@ -44,7 +44,7 @@ export default function GamePage({
                 />
             </div>
 
-            <footer className='App-header-footer'>
+            <footer className='header-footer'>
                 {winTries ? `You won in ${winTries} guesses!` : 'Good luck!'}
             </footer>
         </div>

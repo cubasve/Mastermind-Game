@@ -3,7 +3,7 @@ import styles from './ColorPicker.module.css';
 
 export default function ColorPicker({ colors, handleColorSelection, selectedColorIndex }) {
     return (
-        <div>
+        <div className={styles.ColorPicker}>
             COLOR PICKER
             {colors.map((color, index) => {
                 <button 
@@ -13,7 +13,7 @@ export default function ColorPicker({ colors, handleColorSelection, selectedColo
                         backgroundColor: selectedColorIndex === index ? 'white' : color,
                         borderColor: color,
                     }}
-                    onClick={e => handleColorSelection(index)}
+                    onClick={() => handleColorSelection(index)}
                 />
             })}
         </div>

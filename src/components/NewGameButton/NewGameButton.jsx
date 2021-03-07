@@ -1,9 +1,12 @@
 import React from 'react';
 
-export default function NewGameButton(props) {
+export default function NewGameButton({ handleNewGameClick }) {
     return (
-        <div className='btn btn-default'>
-            NewGameButton
-        </div>
+        <button 
+            className='btn btn-default'
+            onClick={handleNewGameClick}
+        >
+            New Game
+        </button>
     )
 }
