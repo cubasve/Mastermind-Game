@@ -52,20 +52,24 @@ export default class App extends Component {
   }
 
   handlePegClick = (pegIndex) => {
-    let currentGuessIndex = this.state.guesses.length - 1; //get index of last guess object
+    //get index of last guess object
+    let currentGuessIndex = this.state.guesses.length - 1; 
     
     //Replace objects/arrays with new ones
     let guessesCopy = [...this.state.guesses];
     let guessCopy = {...guessCopy[currentGuessIndex]};
     let codeCopy = [...guessCopy.code];
 
-    codeCopy[pegIndex] = this.state.selectedColorIndex; 
     //update new code array with the currently selected color
+    codeCopy[pegIndex] = this.state.selectedColorIndex; 
 
-    guessCopy.code = codeCopy; //update the new guess object
+    //update the new guess object
+    guessCopy.code = codeCopy; 
 
-    guessesCopy[currentGuessIndex] = guessCopy; //update new guesses array
+    //update new guesses array
+    guessesCopy[currentGuessIndex] = guessCopy; 
 
+    //update state with new guesses array
     this.setState({ guesses: guessesCopy });
   }
 
@@ -73,40 +77,53 @@ export default class App extends Component {
     //need index of current guess object(last object in guesses array)
     let currentGuessIndex = this.state.guesses.length - 1;
 
+    //create "working" copies of "guessed" code and the secret code
+    //can modify them as we compute the # of perfect & almost without messing up actual ones in state
     let guessCodeCopy = [...this.state.guesses[currentGuessIndex].code];
     let secretCodeCopy = [...this.state.code];
 
     let perfect = 0, almost = 0;
 
+    //1. Pass computes # of "perfect"
     guessCodeCopy.forEach((code, index) => {
       if (secretCodeCopy[index] === code) {
         perfect++;
+        //Ensure same choice is not matched again by updating both elements in the "working" arrays to null
         guessCodeCopy[index] = secretCodeCopy[index] = null;
       }
     });
 
+    //2. Pass computes # of "amlmost"
     guessCodeCopy.forEach((code, index) => {
       if (code === null) return;
       let foundIndex = secretCodeCopy.indexOf(code);
       if (foundIndex > -1) {
         almost++;
+        //Ensure same choice is not matched again
         secretCodeCopy[foundIndex] = null;
       }
     });
 
+    //state must only be updated with new objects/array
+    //always replace objects/arrays with new ones
     let guessesCopy = [...this.state.guesses];
     let guessCopy = {...guessesCopy[currentGuessIndex]};
     let scoreCopy = {...guessCopy.score};
 
+    //set scores
     scoreCopy.perfect = perfect;
     scoreCopy.almost = almost;
 
+    //update new guess with the new score object
     guessCopy.score = scoreCopy;
 
+    //update new guesses with the new guess object
     guessesCopy[currentGuessIndex] = guessCopy;
 
+    //Add a new guess if there's no winner
     if (perfect !== 4) guessCopy.push(this.getNewGuess());
 
+    //Update state with new guesses array
     this.setState({ guesses: guessesCopy });
   }
 
@@ -125,6 +142,9 @@ export default class App extends Component {
               selectedColorIndex={this.state.selectedColorIndex}
               guesses={this.state.guesses}
               handleColorSelection={this.handleColorSelection}
+              handleNewGameClick={this.handleNewGameClick}
+              handlePegClick={this.handlePegClick}
+              handleScoreClick={this.handleScoreClick}
             />
           )} />
 

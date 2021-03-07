@@ -6,7 +6,15 @@ import GameTimer from '../../components/GameTimer/GameTimer';
 import NewGameButton from '../../components/NewGameButton/NewGameButton';
 import './GamePage.css'
 
-export default function GamePage({ colors, guesses, handleColorSelection, selectedColorIndex, winTries }) {
+export default function GamePage({ 
+    colors, 
+    guesses, 
+    handleColorSelection, 
+    handleNewGameClick,
+    handlePegClick, 
+    handleScoreClick, 
+    selectedColorIndex, 
+    winTries }) {
     return (
         <div className='App'>
 
@@ -14,6 +22,8 @@ export default function GamePage({ colors, guesses, handleColorSelection, select
                 <GameBoard 
                     colors={colors}
                     guesses={guesses}
+                    handlePegClick={handlePegClick}
+                    handleScoreClick={handleScoreClick}
                 />
             </div>
 
@@ -29,7 +39,9 @@ export default function GamePage({ colors, guesses, handleColorSelection, select
                     Difficulty
                 </Link>
 
-                <NewGameButton />
+                <NewGameButton 
+                    handleNewGameClick={handleNewGameClick}
+                />
             </div>
 
             <footer className='App-header-footer'>
