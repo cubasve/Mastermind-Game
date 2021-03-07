@@ -2,18 +2,23 @@ import React from 'react';
 import GuessPegs from '../GuessPegs/GuessPegs';
 import GuessScore from '../GuessScore/GuessScore';
 import ScoreButton from '../ScoreButton/ScoreButton';
+import styles from './GuessRow.module.css';
 
 export default function GuessRow({ colors, currentGuess, guess, rowIndex}) {
     return (
-        <div>
+        <div className={styles.GuessRow}>
             GUESS ROW
-            <div style={{color : currentGuess ? 'black' : 'lightgrey'}}>
+            <div 
+                className={styles.rowNumber}
+                style={{color : currentGuess ? 'black' : 'lightgrey'}}
+            >
                 {rowIndex + 1}
             </div>
 
             <GuessPegs 
-                colors={colors}
                 code={guess.code}
+                colors={colors}
+                currentGuess={currentGuess}
             />
             {currentGuess ? 
                 <ScoreButton /> : 

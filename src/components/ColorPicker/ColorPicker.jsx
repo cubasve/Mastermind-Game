@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ColorPicker.module.css';
 
-export default function ColorPicker({ colors, selectedColorIndex }) {
+export default function ColorPicker({ colors, handleColorSelection, selectedColorIndex }) {
     return (
         <div>
             COLOR PICKER
@@ -10,9 +10,10 @@ export default function ColorPicker({ colors, selectedColorIndex }) {
                     key={color}
                     className={styles.button}
                     style={{
-                        backgroundColor: selectedColorIndex === index ? 'red' : 'red',
+                        backgroundColor: selectedColorIndex === index ? 'white' : color,
                         borderColor: color,
                     }}
+                    onClick={e => handleColorSelection(index)}
                 />
             })}
         </div>

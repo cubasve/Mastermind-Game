@@ -1,4 +1,5 @@
 import React from 'react';
+import './GuessScore.css';
 
 export default function GuessScore({ score }) {
     let scores = (
@@ -32,6 +33,7 @@ export default function GuessScore({ score }) {
 
     return (
         <div className='GuessScore'>
+            GUESS SCORE
             {scores.map((score, index) => 
                 <div 
                     key={index}

@@ -13,15 +13,14 @@ export default class App extends Component {
     //super must be called before accessing this
     this.state = {
       selectedColorIndex: 0,
-      guesses: [this.getNewGuess(), this.getNewGuess()],
+      guesses: [this.getNewGuess(), this.getNewGuess(), this.getNewGuess(), this.getNewGuess()],
       code: this.generateCode(),
     }
   }
 
   getNewGuess = () => {
     return {
-      // code: [null, null, null, null],
-      code: [3, 2, 1, 0],
+      code: [null, null, null, null],
       score: {
         perfect: 0,
         almost: 0,
@@ -40,27 +39,38 @@ export default class App extends Component {
     return this.state.guesses[lastGuess].score.perfect === 4 ? lastGuess + 1 : 0;
   }
 
+  handleColorSelection = (colorIndex) => {
+    this.setState({ selectedColorIndex: colorIndex });
+  }
+
   render() {
     let winTries = this.getWinTries();
-    return (
-      <div className="App">
-        <header className="App-header">React Mastermind</header>
 
-        <div className="flex-h">
+    return (
+      <div className='App'>
+        <header className='App-header-footer'>React Mastermind</header>
+
+        <div className='flex-h align-flex-end'>
           <GameBoard 
             colors={colors}
             guesses={this.state.guesses}
           />
-          <div>
+
+          <div className='App-controls'>
             <ColorPicker 
               colors={colors}
               selectedColorIndex={this.state.selectedColorIndex}
+              handleColorSelection={this.handleColorSelection}
             />
             <GameTimer />
             <NewGameButton />
           </div>
+          
         </div>
-        <footer>{(winTries ? `You won in ${winTries} guesses!` : 'Good Luck!')}</footer>
+
+        <footer className='App-header-footer'>
+          {(winTries ? `You won in ${winTries} guesses!` : 'Good Luck!')}
+        </footer>
       </div>
     )
   }
