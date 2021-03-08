@@ -15,6 +15,7 @@ export default function GamePage({
     handleScoreClick, 
     selectedColorIndex, 
     winTries }) {
+
     return (
         <div className='GamePage'>
 
@@ -25,28 +26,29 @@ export default function GamePage({
                     handlePegClick={handlePegClick}
                     handleScoreClick={handleScoreClick}
                 />
-            </div>
 
-            <div className='GamePage-controls'>
-                <ColorPicker 
-                    colors={colors}
-                    handleColorSelection={handleColorSelection}
-                    selectedColorIndex={selectedColorIndex}
-                />
-                <GameTimer />
+                <div className='GamePage-controls'>
+                    <ColorPicker 
+                        colors={colors}
+                        handleColorSelection={handleColorSelection}
+                        selectedColorIndex={selectedColorIndex}
+                    />
+                    <GameTimer />
 
-                <Link className='btn btn-default GamePage-link-margin' to='/settings'>
-                    Difficulty
-                </Link>
+                    <Link className='btn btn-default GamePage-link-margin' to='/settings'>
+                        Difficulty
+                    </Link>
 
-                <NewGameButton 
-                    handleNewGameClick={handleNewGameClick}
-                />
+                    <NewGameButton 
+                        handleNewGameClick={handleNewGameClick}
+                    />
+                </div>
             </div>
 
             <footer className='header-footer'>
                 {winTries ? `You won in ${winTries} guesses!` : 'Good luck!'}
             </footer>
+            
         </div>
     )
 }

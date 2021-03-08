@@ -2,7 +2,12 @@ import React from 'react';
 import GuessRow from '../GuessRow/GuessRow';
 import styles from './GameBoard.module.css';
 
-export default function GameBoard({ colors, guesses, handlePegClick, handleScoreClick }) {
+export default function GameBoard({ 
+    colors, 
+    guesses, 
+    handlePegClick, 
+    handleScoreClick }) {
+        
     return (
         <div className={styles.GameBoard}>
             GAME BOARD

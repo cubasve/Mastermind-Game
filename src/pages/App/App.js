@@ -18,7 +18,7 @@ export default class App extends Component {
     this.state = {...this.getInitialState(), difficulty: 'Easy'};
   }
 
-  getInitialState = () => {
+  getInitialState() {
     return {
       selectedColorIndex: 0,
       guesses: [this.getNewGuess()],
@@ -26,7 +26,7 @@ export default class App extends Component {
     }
   }
 
-  getNewGuess = () => {
+  getNewGuess() {
     return {
       code: [null, null, null, null],
       score: {
@@ -36,13 +36,13 @@ export default class App extends Component {
     }
   }
 
-  generateCode = () => {
+  generateCode() {
     let numberOfColors = this.state && colors[this.state.difficulty].length;
     numberOfColors = numberOfColors || 4;
     return new Array(4).fill().map(dummy => Math.floor(Math.random() * numberOfColors));
   }
 
-  getWinTries = () => {
+  getWinTries() {
     //if there's a winner, return num guesses
     //if there's no winner, return 0
     let lastGuess = this.state.guesses.length - 1;
@@ -51,7 +51,8 @@ export default class App extends Component {
 
   handleDifficultyChange = (level) => {
     //use callback to ensure level is updated BEFORE calling handleNewGameClick
-    this.setState({ difficulty: level }, () => this.handleNewGameClick());
+    //this.setState({ difficulty: level }, () => handleNewGameClick());
+    this.setState({ difficulty: level, ...this.getInitialState() });
   }
 
   handleColorSelection = (colorIndex) => {
@@ -68,7 +69,7 @@ export default class App extends Component {
     
     //Replace objects/arrays with new ones
     let guessesCopy = [...this.state.guesses];
-    let guessCopy = {...guessCopy[currentGuessIndex]};
+    let guessCopy = {...guessesCopy[currentGuessIndex]};
     let codeCopy = [...guessCopy.code];
 
     //update new code array with the currently selected color
@@ -104,7 +105,7 @@ export default class App extends Component {
       }
     });
 
-    //2. Pass computes # of "amlmost"
+    //2. Pass computes # of "almost"
     guessCodeCopy.forEach((code, index) => {
       if (code === null) return;
       let foundIndex = secretCodeCopy.indexOf(code);
@@ -132,7 +133,7 @@ export default class App extends Component {
     guessesCopy[currentGuessIndex] = guessCopy;
 
     //Add a new guess if there's no winner
-    if (perfect !== 4) guessCopy.push(this.getNewGuess());
+    if (perfect !== 4) guessesCopy.push(this.getNewGuess());
 
     //Update state with new guesses array
     this.setState({ guesses: guessesCopy });
@@ -142,8 +143,8 @@ export default class App extends Component {
     let winTries = this.getWinTries();
 
     return (
-      <div className='App'>
-        <header className='App-header-footer'>React Mastermind</header>
+      <div>
+        <header className='header-footer'>React Mastermind</header>
 
         <Switch>
           <Route exact path='/' render={() => (
