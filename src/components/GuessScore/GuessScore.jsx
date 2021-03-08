@@ -5,8 +5,10 @@ export default function GuessScore({ score }) {
     let scores = (
         'P'.repeat(score.perfect) + 
         'A'.repeat(score.almost) + 
-        'I'.repeat(4 - score.perfect - score.almost))
-        .split('');
+        'I'.repeat(4 - score.perfect - score.almost)
+        ).split('');
+        console.log('scores', scores);
+        //Ex: scores = ['A', 'I', 'P', 'A']
 
     let baseStyle = {
         width: 10,
@@ -28,12 +30,11 @@ export default function GuessScore({ score }) {
         'I': { //incomplete
             borderColor: 'white',
             backgroundColor: 'lightgrey',
-        }
+        },
     }
 
     return (
         <div className='GuessScore'>
-            GUESS SCORE
             {scores.map((score, index) => 
                 <div 
                     key={index}

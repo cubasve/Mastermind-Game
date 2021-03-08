@@ -144,7 +144,7 @@ export default class App extends Component {
 
     return (
       <div>
-        <header className='header-footer'>React Mastermind</header>
+        <header className='App-header-footer'>M A S T E R M I N D</header>
 
         <Switch>
           <Route exact path='/' render={() => (

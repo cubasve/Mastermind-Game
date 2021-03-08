@@ -48,7 +48,7 @@ export default function GamePage({
             <footer className='header-footer'>
                 {winTries ? `You won in ${winTries} guesses!` : 'Good luck!'}
             </footer>
-            
+
         </div>
     )
 }

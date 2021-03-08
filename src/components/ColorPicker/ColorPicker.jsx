@@ -1,4 +1,5 @@
 /* Doesn't work with function declarations */
+/* Array.prototype.map() expects a return value from arrow function  array-callback-return */
 
 // import React from 'react';
 // import styles from './ColorPicker.module.css';
@@ -9,12 +10,12 @@
 //     selectedColorIndex }) {
 
 //     return (
-//         <div className={styles.ColorPicker}>
+//         <div className='ColorPicker'>
 //             COLOR PICKER
 //             {colors.map((color, index) => {
 //                 <button 
 //                     key={color}
-//                     className={styles.button}
+//                     className='button'
 //                     style={{
 //                         backgroundColor: selectedColorIndex === index ? 'white' : color,
 //                         borderColor: color,
@@ -31,7 +32,6 @@ import styles from './ColorPicker.module.css';
 
 const ColorPicker = ({ colors, handleColorSelection, selectedColorIndex }) => (
   <div className={styles.ColorPicker}>
-      COLOR PICKER
     {colors.map((color, index) =>
       <button
         key={color}

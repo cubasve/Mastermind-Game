@@ -13,7 +13,6 @@ export default function GuessRow({
     rowIndex}) {
     return (
         <div className={styles.GuessRow}>
-            GUESS ROW
             <div 
                 className={styles.rowNumber}
                 style={{color : currentGuess ? 'black' : 'lightgrey'}}

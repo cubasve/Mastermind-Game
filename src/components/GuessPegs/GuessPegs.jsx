@@ -5,7 +5,6 @@ import './GuessPegs.css';
 export default function GuessPegs({ colors, code, currentGuess, handlePegClick }) {
     return (
         <div className='GuessPegs'>
-            GUESS PEGS
             <GuessPeg 
                 color={colors[code[0]]}
                 currentGuess={currentGuess}

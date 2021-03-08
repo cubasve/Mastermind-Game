@@ -7,10 +7,9 @@ export default function GameBoard({
     guesses, 
     handlePegClick, 
     handleScoreClick }) {
-        
+
     return (
         <div className={styles.GameBoard}>
-            GAME BOARD
             {guesses.map((guess, index) => (
                 <GuessRow 
                     guess={guess}
