@@ -1,4 +1,4 @@
-.App {
+/* .App {
   display: flex;
   flex-direction: column;
 }
@@ -17,4 +17,15 @@
   flex-flow: column nowrap;
   justify-content: space-between;
   margin-left: 20px;
+} */
+
+/* .component {
+  border: 2px dotted red;
+  margin: 4px;
+  padding: 4px;
 }
+
+.componentName {
+  font-size: large;
+  color: maroon;
+} */

@@ -21,7 +21,6 @@ export default function GamePage({
 
     return (
         <div className='GamePage'>
-
             <div className='flex-h align-flex-end'>
                 <GameBoard 
                     colors={colors}

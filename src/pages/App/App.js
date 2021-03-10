@@ -68,14 +68,20 @@ export default class App extends Component {
   handlePegClick = (pegIndex) => {
     //get index of last guess object
     let currentGuessIndex = this.state.guesses.length - 1; 
+    console.log('currentGuessIndex: ', currentGuessIndex);
     
     //Replace objects/arrays with new ones
     let guessesCopy = [...this.state.guesses];
+    // console.log('guessesCopy: ', guessesCopy);
     let guessCopy = {...guessesCopy[currentGuessIndex]};
+    // console.log('guessCopy: ', guessCopy);
     let codeCopy = [...guessCopy.code];
+    // console.log('codeCopy: ', codeCopy);
 
     //update new code array with the currently selected color
-    codeCopy[pegIndex] = this.state.selectedColorIndex; 
+    codeCopy[pegIndex] = this.state.selectedColorIndex;
+    // console.log('pegIndex: ', pegIndex);
+    // console.log('codeCopy[pegIndex]: ', codeCopy[pegIndex]) 
 
     //update the new guess object
     guessCopy.code = codeCopy; 
@@ -90,11 +96,14 @@ export default class App extends Component {
   handleScoreClick = () => {
     //need index of current guess object(last object in guesses array)
     let currentGuessIndex = this.state.guesses.length - 1;
+    console.log('currentGuessIndex: ', currentGuessIndex);
 
     //create "working" copies of "guessed" code and the secret code
     //can modify them as we compute the # of perfect & almost without messing up actual ones in state
     let guessCodeCopy = [...this.state.guesses[currentGuessIndex].code];
+    console.log('guessCodeCopy: ', guessCodeCopy);
     let secretCodeCopy = [...this.state.code];
+    console.log('secretCodeCopy: ', secretCodeCopy);
 
     let perfect = 0, almost = 0;
 
@@ -111,6 +120,7 @@ export default class App extends Component {
     guessCodeCopy.forEach((code, index) => {
       if (code === null) return;
       let foundIndex = secretCodeCopy.indexOf(code);
+      console.log('foundIndex: ', foundIndex);
       if (foundIndex > -1) {
         almost++;
         //Ensure same choice is not matched again
@@ -121,8 +131,11 @@ export default class App extends Component {
     //state must only be updated with new objects/array
     //always replace objects/arrays with new ones
     let guessesCopy = [...this.state.guesses];
+    console.log('guessesCopy: ', guessesCopy);
     let guessCopy = {...guessesCopy[currentGuessIndex]};
+    console.log('guessCopy: ', guessCopy);
     let scoreCopy = {...guessCopy.score};
+    console.log('scoreCopy: ', scoreCopy);
 
     //set scores
     scoreCopy.perfect = perfect;
@@ -149,8 +162,8 @@ export default class App extends Component {
     let winTries = this.getWinTries();
 
     return (
-      <div>
-        <header className='App-header-footer'>M A S T E R M I N D</header>
+      <>
+        <header className='header-footer'>M A S T E R M I N D</header>
 
         <Switch>
           <Route exact path='/' render={() => (
@@ -182,7 +195,7 @@ export default class App extends Component {
           )} />
 
         </Switch>
-      </div>
+      </>
     )
   }
 }

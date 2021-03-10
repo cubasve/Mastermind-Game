@@ -7,7 +7,7 @@ export default function GuessScore({ score }) {
         'A'.repeat(score.almost) + 
         'I'.repeat(4 - score.perfect - score.almost)
         ).split('');
-        console.log('scores', scores);
+        // console.log('scores', scores);
         //Ex: scores = ['A', 'I', 'P', 'A']
 
     let baseStyle = {

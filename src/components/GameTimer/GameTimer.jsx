@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { /*Component,*/ useEffect } from 'react';
 import styles from './GameTimer.module.css';
 
 function formatTime(secs) {
@@ -55,7 +55,9 @@ export default function GameTimer({
         return () => {
             clearInterval(timerId);
         }
-    }, [handleTick])
+    }, [handleTick]);
+    //Include handleTick as a dependency or else the timer
+    //will not stop even if user solved the pattern
 
 
     return (
