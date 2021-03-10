@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Mastermind-Game/static/css/main.935d79eb.chunk.css",
-    "main.js": "/Mastermind-Game/static/js/main.0a08fbed.chunk.js",
-    "main.js.map": "/Mastermind-Game/static/js/main.0a08fbed.chunk.js.map",
+    "main.js": "/Mastermind-Game/static/js/main.6fbf081d.chunk.js",
+    "main.js.map": "/Mastermind-Game/static/js/main.6fbf081d.chunk.js.map",
     "runtime-main.js": "/Mastermind-Game/static/js/runtime-main.159ed631.js",
     "runtime-main.js.map": "/Mastermind-Game/static/js/runtime-main.159ed631.js.map",
     "static/js/2.21f30d05.chunk.js": "/Mastermind-Game/static/js/2.21f30d05.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.159ed631.js",
     "static/js/2.21f30d05.chunk.js",
     "static/css/main.935d79eb.chunk.css",
-    "static/js/main.0a08fbed.chunk.js"
+    "static/js/main.6fbf081d.chunk.js"
   ]
 }
