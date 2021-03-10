@@ -8,11 +8,14 @@ import './GamePage.css'
 
 export default function GamePage({ 
     colors, 
+    elapsedTime,
     guesses, 
+    isTiming,
     handleColorSelection, 
     handleNewGameClick,
     handlePegClick, 
     handleScoreClick, 
+    handleTimerUpdate,
     selectedColorIndex, 
     winTries }) {
 
@@ -33,7 +36,11 @@ export default function GamePage({
                         handleColorSelection={handleColorSelection}
                         selectedColorIndex={selectedColorIndex}
                     />
-                    <GameTimer />
+                    <GameTimer 
+                        elapsedTime={elapsedTime}
+                        handleTimerUpdate={handleTimerUpdate}
+                        isTiming={isTiming}
+                    />
 
                     <Link className='btn btn-default GamePage-link-margin' to='/settings'>
                         Difficulty

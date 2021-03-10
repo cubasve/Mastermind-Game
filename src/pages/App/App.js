@@ -23,6 +23,8 @@ export default class App extends Component {
       selectedColorIndex: 0,
       guesses: [this.getNewGuess()],
       code: this.generateCode(),
+      elapsedTime: 0,
+      isTiming: true,
     }
   }
 
@@ -136,7 +138,11 @@ export default class App extends Component {
     if (perfect !== 4) guessesCopy.push(this.getNewGuess());
 
     //Update state with new guesses array
-    this.setState({ guesses: guessesCopy });
+    this.setState({ guesses: guessesCopy, isTiming: perfect !== 4 });
+  }
+
+  handleTimerUpdate = () => {
+    this.setState((currentState) => ({ elapsedTime: ++currentState.elapsedTime }));
   }
 
   render() {
@@ -150,13 +156,19 @@ export default class App extends Component {
           <Route exact path='/' render={() => (
             <GamePage 
               winTries={winTries}
+
               colors={colors[this.state.difficulty]}
               selectedColorIndex={this.state.selectedColorIndex}
-              guesses={this.state.guesses}
               handleColorSelection={this.handleColorSelection}
+
+              guesses={this.state.guesses}
               handleNewGameClick={this.handleNewGameClick}
               handlePegClick={this.handlePegClick}
               handleScoreClick={this.handleScoreClick}
+
+              elapsedTime={this.state.elapsedTime}
+              isTiming={this.state.isTiming}
+              handleTimerUpdate={this.handleTimerUpdate}
             />
           )} />
 
