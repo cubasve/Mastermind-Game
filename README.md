@@ -38,6 +38,56 @@
 ![image](https://user-images.githubusercontent.com/62129720/111056590-2fd90780-844e-11eb-8370-03c515529a8e.png)
 
 ### handleScoreClick method's process
+- **currentGuessIndex**: current row we're on (1st row is 0, 2nd row is 1, etc.)
+- **guessCodeCopy**: ARRAY - copy of what the user guessed as the code
+- **secretCodeCopy**: ARRAY - what the secret code (answer) is
+```javascript
+let secretCodeCopy = [...this.state.code];
+
+//Ex. [0, 2, 1, 0]
+```
+
+- **foundIndex**: compares the user's guess to the secret code (if a user's guess is not in the secret code, it returns -1)
+- If a color (index number) is not in the secretCodeCopy, but the user guessed it (it's in the guessCodeCopy), then foundIndex will be -1 (not found)
+```javascript
+//Looping through guessCodeCopy looking for almosts
+let foundIndex = secretCodeCopy.indexOf(code);
+
+if (foundIndex > -1) {
+    almost++;
+}
+```
+
+```javascript
+//Looping through guessCodeCopy looking for perfects
+if (secretCodeCopy[index] === code) {
+    perfect++;
+}
+```
+
+- **guessesCopy**: ARRAY - copy of the guesses array
+```javascript
+[{
+    code: [0, 1, 2, 3],
+    score: { perfect: 0, almost: 3 },
+}]
+
+```
+- **guessCopy**: OBJECT - copy of the guess - the specific index of the current guess
+```javascript
+{
+    code: [0, 1, 2, 3],
+    score: { perfect: 0, almost: 3 },
+}
+
+```
+- **scoreCopy**: OBJECT - copy of the score - the specific index of the current score
+```javascript
+{
+    score: { perfect: 0, almost: 3 },
+}
+
+```
 
 - 1st row's guess:
 ![image](https://user-images.githubusercontent.com/62129720/111056617-67e04a80-844e-11eb-9c71-bfcd45681ea0.png)
